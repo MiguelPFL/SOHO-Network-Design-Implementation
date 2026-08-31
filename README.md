@@ -174,12 +174,15 @@ Each department's AP was configured with its own SSID, mapped to its VLAN via
 the corresponding access port on the switch.
 
 **Access Point0 — Admin/IT (VLAN 10)**
+
 ![Access Point0 config](screenshots/accesspoint0.png)
 
 **Access Point1 — Finance/HR (VLAN 20)**
+
 ![Access Point1 config](screenshots/accesspoint1.png)
 
 **Access Point2 — CS/Reception (VLAN 30)**
+
 ![Access Point2 config](screenshots/accesspoint2.png)
 
 ### 6.6 End Device Verification
