@@ -87,8 +87,14 @@ Building configuration...
 ...
 ```
 
-### 6.1 AccessPoint-PT (Access Point0)
+### 6.10 AccessPoint-PT (Access Point0)
 ![VLAN Creation](screenshots/accesspoint0.png)
+
+### 6.11 AccessPoint-PT (Access Point1)
+![VLAN Creation](screenshots/accesspoint1.png)
+
+### 6.12 AccessPoint-PT (Access Point2)
+![VLAN Creation](screenshots/accesspoint2.png)
 
 ### 6.2 Trunk and Access Ports
 ```
