@@ -202,37 +202,6 @@ Building configuration...
 
 ---
 
-## 7. Testing & Verification
-
-| Test | From | To | Expected Result | Actual Result | Screenshot |
-|---|---|---|---|---|---|
-| Same-VLAN ping | PC0 (Admin) | Printer0 (Admin) | Success | | |
-| Cross-VLAN ping | PC0 (Admin) | PC1 (Finance) | Success (inter-VLAN routing) | | |
-| Cross-VLAN ping | PC2 (CS) | PC1 (Finance) | Success | | |
-| DHCP lease | Laptop0 (wireless, Admin) | — | Gets 192.168.1.x address | | |
-| Wireless connectivity | Smartphone1 (Finance) | Wired PC in same VLAN | Success | | |
-
-Add `tracert` output for at least one cross-VLAN path to show the packet actually routes through the router subinterfaces.
-
----
-
-## 8. Troubleshooting Log
-
-| Issue | Cause | Fix |
-|---|---|---|
-| *e.g. AP not broadcasting SSID* | *e.g. access port on wrong VLAN* | *e.g. reassigned Fa0/2 to VLAN 10* |
-
----
-
-## 9. Key Learnings
-
-- [What subnetting/VLSM insight you gained]
-- [What router-on-a-stick taught you about trunking]
-- [Any DHCP scoping gotchas]
-- [Anything about wireless security you'd change for production, e.g. WPA2 vs open]
-
----
-
 ## 10. Files in This Repo
 
 - `soho-network-project2.pkt` — completed Packet Tracer file
