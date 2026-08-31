@@ -34,7 +34,7 @@ XYZ company is a fast-growing company in Eastern Australia with more than 2 mill
 
 ## 4. Network Topology
 
-*(screenshots/topology.png)*
+SOHO-Network-Design-Implementation/screenshots/topology.png
 
 | Device | Role |
 |---|---|
