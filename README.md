@@ -1,7 +1,6 @@
-# SOHO Network Design & Implementation — XYZ Company Branch (Bonalbo)
+# SOHO Network Design & Implementation
 
-**Enterprise Network Project #2** — Cisco Packet Tracer
-*Based on the project brief by Gurutech Networking Training (Benard Otom Owino)*
+**Enterprise Network Project**
 
 ---
 
