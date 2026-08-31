@@ -169,7 +169,7 @@ Building configuration...
 ![PC and Printers](screenshots/pc0.png)
 ![PC and Printers](screenshots/pc1.png)
 ![PC and Printers](screenshots/pc2.png)
-![]()
+![PC and Printers]()
 
 ### 6.2 Trunk and Access Ports
 ```
