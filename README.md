@@ -203,8 +203,6 @@ department's DHCP pool.
 All devices obtained IPv4 addresses automatically within their department's
 subnet, confirming DHCP scoping is correct per VLAN.
 
----
-
 ## 7. Testing & Verification
 
 The following tests confirm the network meets the case study's core
@@ -222,12 +220,6 @@ while remaining logically separated by VLAN.
 | 7 | Wireless DHCP lease | Smartphone1 (Finance, wireless) | — | Obtains 192.168.1.64–126 address | | |
 | 8 | Wireless-to-wired ping | Smartphone2 (CS, wireless) | PC2 (CS, wired) | Success (same VLAN) | | |
 | 9 | Cross-VLAN traceroute | PC0 (Admin) | PC2 (CS/Reception) | Path routes through 192.168.1.1 | | |
-
-Fill in the **Actual Result** and **Screenshot** columns as you run each test
-in Packet Tracer's Simulation or Realtime mode. For test 9, `tracert` output
-showing the router subinterface as the first hop is the clearest evidence
-that inter-VLAN routing — not a flat/misconfigured network — is what's
-making cross-department communication work.
 
 ## 8. Key Learnings
 
