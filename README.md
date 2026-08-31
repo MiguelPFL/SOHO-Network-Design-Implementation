@@ -87,14 +87,8 @@ Building configuration...
 ...
 ```
 
-### 6.1 VLAN Creation (Switch)
-```
-[paste your switch config commands here, e.g.]
-Switch(config)#vlan 10
-Switch(config-vlan)#name ADMIN-IT
-...
-```
-📸 *Screenshot: `show vlan brief` output*
+### 6.1 AccessPoint-PT (Access Point0)
+![VLAN Creation](screenshots/accesspoint0.png)
 
 ### 6.2 Trunk and Access Ports
 ```
