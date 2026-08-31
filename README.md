@@ -57,7 +57,6 @@ Base network: `192.168.1.0/24`, subnetted into three `/26` blocks (2 borrowed bi
 | Finance/HR | 20 | 192.168.1.64/26 | .65 – .126 | 192.168.1.65 | 192.168.1.127 |
 | CS/Reception | 30 | 192.168.1.128/26 | .129 – .190 | 192.168.1.129 | 192.168.1.191 |
 
-*(Fill in the actual DHCP pool ranges and exclusions you configured.)*
 
 ---
 
