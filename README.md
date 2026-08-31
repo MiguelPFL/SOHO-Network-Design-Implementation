@@ -213,3 +213,78 @@ subnet, confirming DHCP scoping is correct per VLAN.
 - `README.md` — this document
 
 ---
+
+## 7. Testing & Verification
+
+The following tests confirm the network meets the case study's core
+requirement: devices in all departments can communicate with each other,
+while remaining logically separated by VLAN.
+
+| # | Test | From | To | Expected Result | Actual Result | Screenshot |
+|---|---|---|---|---|---|---|
+| 1 | Same-VLAN ping | PC0 (Admin) | Printer0 (Admin) | Success | | |
+| 2 | Same-VLAN ping | PC1 (Finance) | Printer1 (Finance) | Success | | |
+| 3 | Cross-VLAN ping | PC0 (Admin) | PC1 (Finance) | Success (via router-on-a-stick) | | |
+| 4 | Cross-VLAN ping | PC2 (CS/Reception) | PC1 (Finance) | Success | | |
+| 5 | Cross-VLAN ping | PC0 (Admin) | PC2 (CS/Reception) | Success | | |
+| 6 | Wireless DHCP lease | Laptop0 (Admin, wireless) | — | Obtains 192.168.1.x address | | |
+| 7 | Wireless DHCP lease | Smartphone1 (Finance, wireless) | — | Obtains 192.168.1.64–126 address | | |
+| 8 | Wireless-to-wired ping | Smartphone2 (CS, wireless) | PC2 (CS, wired) | Success (same VLAN) | | |
+| 9 | Cross-VLAN traceroute | PC0 (Admin) | PC2 (CS/Reception) | Path routes through 192.168.1.1 | | |
+
+Fill in the **Actual Result** and **Screenshot** columns as you run each test
+in Packet Tracer's Simulation or Realtime mode. For test 9, `tracert` output
+showing the router subinterface as the first hop is the clearest evidence
+that inter-VLAN routing — not a flat/misconfigured network — is what's
+making cross-department communication work.
+
+---
+
+## 8. Troubleshooting Log
+
+| Issue | Cause | Fix |
+|---|---|---|
+| *e.g. Cross-VLAN pings failed initially* | *e.g. router subinterface encapsulation didn't match the VLAN tag arriving on the trunk* | *e.g. corrected `encapsulation dot1Q` value to match the VLAN ID* |
+| *e.g. AP not broadcasting SSID* | *e.g. access port connecting the AP was left in the default VLAN 1* | *e.g. reassigned the port to the correct department VLAN* |
+| *e.g. Host got no IP address* | *e.g. `service dhcp` not enabled, or pool network/mask mismatch* | *e.g. verified `service dhcp` and corrected the pool's network statement* |
+
+*(Replace with the actual issues you hit — even minor ones. This section is
+what shows real troubleshooting ability rather than just following a
+tutorial.)*
+
+---
+
+## 9. Key Learnings
+
+- Router-on-a-stick requires the subinterface encapsulation VLAN ID to
+  exactly match the VLAN tag the switch sends over the trunk — a mismatch
+  here silently breaks inter-VLAN routing with no error message.
+- Subnetting a /24 into three /26s made VLAN and DHCP scoping simple, but in
+  a real deployment I'd size subnets closer to actual headcount per
+  department rather than splitting evenly, to avoid wasting address space.
+- Trunk ports must be configured on *both* the switch-to-router link; forgetting
+  this on either end leaves VLANs unable to reach the router at all.
+- Wireless client behavior in Packet Tracer (SSID, security mode, VLAN
+  mapping via the access port) mirrors real AP configuration closely enough
+  to be a genuinely useful proxy for hands-on wireless setup.
+
+*(Edit these to reflect what you actually learned — the more specific to a
+mistake you personally made and fixed, the stronger this reads to a
+reviewer.)*
+
+---
+
+## 10. Summary
+
+This project implements a segmented SOHO network for XYZ company's Bonalbo
+branch, meeting all six requirements from the case study: a single Cisco
+router and switch form the core infrastructure; three departments (Admin/IT,
+Finance/HR, CS/Reception) are isolated into separate VLANs with independent
+/26 subnets; router-on-a-stick provides inter-VLAN routing so departments can
+communicate despite the isolation; the router's DHCP server automatically
+assigns addresses to all hosts; and each department has its own wireless
+network via a dedicated access point. Testing via same-VLAN and cross-VLAN
+pings, wireless DHCP leases, and a cross-VLAN traceroute confirms the design
+works as intended.
+
+---
