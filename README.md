@@ -86,7 +86,6 @@ Building configuration...
 [OK]
 ...
 ```
-📸 *Screenshot: `show vlan brief` output*
 
 ### 6.1 VLAN Creation (Switch)
 ```
