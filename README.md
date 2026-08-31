@@ -165,14 +165,11 @@ Building configuration...
 [OK]
 ```
 
-### 6.50 PC (PC0)
-![PC](screenshots/pc0.png)
-
-### 6.51 PC (PC1)
-![PC](screenshots/pc1.png)
-
-### 6.52 PC (PC2)
-![PC](screenshots/pc2.png)
+### 6.5 PC and Printers
+![PC and Printers](screenshots/pc0.png)
+![PC and Printers](screenshots/pc1.png)
+![PC and Printers](screenshots/pc2.png)
+![]()
 
 ### 6.2 Trunk and Access Ports
 ```
