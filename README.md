@@ -96,6 +96,47 @@ Building configuration...
 ### 6.12 AccessPoint-PT (Access Point2)
 ![VLAN Creation](screenshots/accesspoint2.png)
 
+### 6.2 Switch (Switch0)
+```
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#int fa0/1
+Switch(config-if)#switchport mode trunk
+Switch(config-if)#do wr
+Building configuration...
+[OK]
+...
+```
+
+### 6.3 Router (Router0)
+```
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int g0/0
+Router(config-if)#no sh
+Router(config-if)#exit
+Router(config)#int g0/0.10
+Router(config-subif)#encapsulation dot1Q 10
+Router(config-subif)#ip address 192.168.1.1 255.255.255.192
+Router(config-subif)#exit
+Router(config)#int g0/0.20
+Router(config-subif)#encapsulation dot1Q 20
+Router(config-subif)#ip address 192.168.1.65 255.255.255.192
+Router(config-subif)#do wr
+Building configuration...
+[OK]
+Router(config-subif)#exit
+Router(config)#int g0/0.30
+Router(config-subif)#encapsulation dot1Q 30
+Router(config-subif)#ip address 192.168.1.129 255.255.255.192
+Router(config-subif)#do wr
+Building configuration...
+[OK]
+Router(config-subif)#exit
+```
+
 ### 6.2 Trunk and Access Ports
 ```
 [paste trunk config for the link to the router, and access port configs per VLAN]
