@@ -64,7 +64,6 @@ Base network: `192.168.1.0/24`, subnetted into three `/26` blocks (2 borrowed bi
 
 ### 6.0 Switch (Switch0)
 ```
-[paste your switch config commands here, e.g.]
 Switch>en
 Switch#conf t
 Enter configuration commands, one per line.  End with CNTL/Z.
