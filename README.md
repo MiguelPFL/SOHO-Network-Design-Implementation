@@ -34,7 +34,7 @@ XYZ company is a fast-growing company in Eastern Australia with more than 2 mill
 
 ## 4. Network Topology
 
-*[Insert your topology screenshot here — the one you already have]*
+(screenshots/topology.png)
 
 | Device | Role |
 |---|---|
