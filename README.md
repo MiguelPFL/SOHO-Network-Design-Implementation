@@ -137,6 +137,49 @@ Building configuration...
 Router(config-subif)#exit
 ```
 
+### 6.4 Router (Router0)
+```
+Router(config)#service dhcp
+Router(config)#ip dhcp pool Admin-Pool
+Router(dhcp-config)#network 192.168.1.0 255.255.255.192
+Router(dhcp-config)#default-router 192.168.1.1
+Router(dhcp-config)#dns-server 192.168.1.1
+Router(dhcp-config)#domain-name Admin.com
+Router(dhcp-config)#exit
+Router(config)#
+Router(config)#ip dhcp pool Finance-Pool
+Router(dhcp-config)#network 192.168.1.64 255.255.255.192
+Router(dhcp-config)#default-router 192.168.1.65
+Router(dhcp-config)#dns-server 192.168.1.65
+Router(dhcp-config)#domain-name Finance.com
+Router(dhcp-config)#exit
+Router(config)#
+Router(config)#ip dhcp pool CS.com
+Router(dhcp-config)#network 192.168.1.128 255.255.255.192
+Router(dhcp-config)#default-router 192.168.1.129
+Router(dhcp-config)#dns-server 192.168.1.129
+Router(dhcp-config)#domain-name CS.com
+Router(dhcp-config)#exit
+Router(config)#do wr
+Building configuration...
+[OK]
+```
+
+### 6.50 PC (PC0)
+```
+[SSID, security mode, and VLAN mapping per department AP]
+```
+
+### 6.51 PC (PC1)
+```
+[SSID, security mode, and VLAN mapping per department AP]
+```
+
+### 6.52 PC (PC2)
+```
+[SSID, security mode, and VLAN mapping per department AP]
+```
+
 ### 6.2 Trunk and Access Ports
 ```
 [paste trunk config for the link to the router, and access port configs per VLAN]
