@@ -62,6 +62,33 @@ Base network: `192.168.1.0/24`, subnetted into three `/26` blocks (2 borrowed bi
 
 ## 6. Configuration Summary
 
+### 6.0 Switch (Switch0)
+```
+[paste your switch config commands here, e.g.]
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#int range fa0/2-4
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan 10
+% Access VLAN does not exist. Creating vlan 10
+Switch(config-if-range)#exit
+Switch(config)#int range fa0/5-7
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan 20
+% Access VLAN does not exist. Creating vlan 20
+Switch(config-if-range)#exit
+Switch(config)#int range fa0/8-10
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan 30
+% Access VLAN does not exist. Creating vlan 30
+Switch(config-if-range)#do wr
+Building configuration...
+[OK]
+...
+```
+📸 *Screenshot: `show vlan brief` output*
+
 ### 6.1 VLAN Creation (Switch)
 ```
 [paste your switch config commands here, e.g.]
