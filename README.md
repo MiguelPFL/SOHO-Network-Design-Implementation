@@ -62,7 +62,13 @@ Base network: `192.168.1.0/24`, subnetted into three `/26` blocks (2 borrowed bi
 
 ## 6. Configuration Summary
 
-### 6.0 Switch (Switch0)
+### 6.1 Switch — VLAN Creation & Access Ports
+
+Created three VLANs and assigned access ports per department: Fa0/2–4 to
+VLAN 10 (Admin/IT), Fa0/5–7 to VLAN 20 (Finance/HR), and Fa0/8–10 to VLAN 30
+(CS/Reception). Packet Tracer auto-creates each VLAN the first time it's
+referenced in a `switchport access vlan` command.
+
 ```
 Switch>en
 Switch#conf t
@@ -81,22 +87,17 @@ Switch(config)#int range fa0/8-10
 Switch(config-if-range)#switchport mode access
 Switch(config-if-range)#switchport access vlan 30
 % Access VLAN does not exist. Creating vlan 30
-Switch(config-if-range)#do wr
+Switch(config-if-range)#exit
+Switch(config)#do wr
 Building configuration...
 [OK]
-...
 ```
 
-### 6.10 AccessPoint-PT (Access Point0)
-![VLAN Creation](screenshots/accesspoint0.png)
+### 6.2 Switch — Trunk Configuration
 
-### 6.11 AccessPoint-PT (Access Point1)
-![VLAN Creation](screenshots/accesspoint1.png)
+Set Fa0/1 (the uplink to the router) to trunk mode so all three VLANs' traffic
+can pass to the router for inter-VLAN routing.
 
-### 6.12 AccessPoint-PT (Access Point2)
-![VLAN Creation](screenshots/accesspoint2.png)
-
-### 6.2 Switch (Switch0)
 ```
 Switch>en
 Switch#conf t
@@ -106,10 +107,14 @@ Switch(config-if)#switchport mode trunk
 Switch(config-if)#do wr
 Building configuration...
 [OK]
-...
 ```
 
-### 6.3 Router (Router0)
+### 6.3 Router — Subinterfaces (Router-on-a-Stick)
+
+Configured one subinterface per VLAN on the router's Gi0/0 link, each with
+802.1Q encapsulation matching its VLAN ID and the gateway address for that
+department's subnet.
+
 ```
 Router>en
 Router#conf t
@@ -124,9 +129,6 @@ Router(config-subif)#exit
 Router(config)#int g0/0.20
 Router(config-subif)#encapsulation dot1Q 20
 Router(config-subif)#ip address 192.168.1.65 255.255.255.192
-Router(config-subif)#do wr
-Building configuration...
-[OK]
 Router(config-subif)#exit
 Router(config)#int g0/0.30
 Router(config-subif)#encapsulation dot1Q 30
@@ -134,10 +136,13 @@ Router(config-subif)#ip address 192.168.1.129 255.255.255.192
 Router(config-subif)#do wr
 Building configuration...
 [OK]
-Router(config-subif)#exit
 ```
 
-### 6.4 Router (Router0)
+### 6.4 Router — DHCP Pools
+
+Configured one DHCP pool per department, scoped to its own /26 subnet, with
+the router subinterface as both default gateway and DNS server.
+
 ```
 Router(config)#service dhcp
 Router(config)#ip dhcp pool Admin-Pool
@@ -146,15 +151,13 @@ Router(dhcp-config)#default-router 192.168.1.1
 Router(dhcp-config)#dns-server 192.168.1.1
 Router(dhcp-config)#domain-name Admin.com
 Router(dhcp-config)#exit
-Router(config)#
 Router(config)#ip dhcp pool Finance-Pool
 Router(dhcp-config)#network 192.168.1.64 255.255.255.192
 Router(dhcp-config)#default-router 192.168.1.65
 Router(dhcp-config)#dns-server 192.168.1.65
 Router(dhcp-config)#domain-name Finance.com
 Router(dhcp-config)#exit
-Router(config)#
-Router(config)#ip dhcp pool CS.com
+Router(config)#ip dhcp pool CS-Pool
 Router(dhcp-config)#network 192.168.1.128 255.255.255.192
 Router(dhcp-config)#default-router 192.168.1.129
 Router(dhcp-config)#dns-server 192.168.1.129
@@ -165,44 +168,42 @@ Building configuration...
 [OK]
 ```
 
-### 6.5 PC and Printers
-![PC and Printers](screenshots/pc0.png)
-![PC and Printers](screenshots/pc1.png)
-![PC and Printers](screenshots/pc2.png)
-![PC and Printers](screenshots/printer0.png)
-![PC and Printers](screenshots/printer1.png)
-![PC and Printers](screenshots/printer2.png)
+### 6.5 Access Points
 
-### 6.2 Trunk and Access Ports
-```
-[paste trunk config for the link to the router, and access port configs per VLAN]
-```
-📸 *Screenshot: `show interfaces trunk`*
+Each department's AP was configured with its own SSID, mapped to its VLAN via
+the corresponding access port on the switch.
 
-### 6.3 Router-on-a-Stick (Inter-VLAN Routing)
-```
-[paste subinterface configs — e.g. GigabitEthernet0/0.10, .20, .30]
-```
-📸 *Screenshot: `show ip interface brief`*
+**Access Point0 — Admin/IT (VLAN 10)**
+![Access Point0 config](screenshots/accesspoint0.png)
 
-### 6.4 DHCP Server Configuration
-```
-[paste DHCP pool configs per VLAN]
-```
-📸 *Screenshot: DHCP pool config + a host's `ipconfig` showing a leased address*
+**Access Point1 — Finance/HR (VLAN 20)**
+![Access Point1 config](screenshots/accesspoint1.png)
 
-### 6.5 Wireless (Access Points)
-```
-[SSID, security mode, and VLAN mapping per department AP]
-```
-📸 *Screenshot: AP config GUI/CLI for each department*
+**Access Point2 — CS/Reception (VLAN 30)**
+![Access Point2 config](screenshots/accesspoint2.png)
 
-### 6.6 Host Device Configuration
-📸 *Screenshot: `ipconfig` on one wired and one wireless device per department*
+### 6.6 End Device Verification
+
+Each PC and printer was set to obtain an IPv4 address automatically. The
+screenshots below confirm every device received an address from its
+department's DHCP pool.
+
+| Device | Department | Verification |
+|---|---|---|
+| PC0 | Admin/IT | ![PC0 ipconfig](screenshots/pc0.png) |
+| PC1 | Finance/HR | ![PC1 ipconfig](screenshots/pc1.png) |
+| PC2 | CS/Reception | ![PC2 ipconfig](screenshots/pc2.png) |
+| Printer0 | Admin/IT | ![Printer0 config](screenshots/printer0.png) |
+| Printer1 | Finance/HR | ![Printer1 config](screenshots/printer1.png) |
+| Printer2 | CS/Reception | ![Printer2 config](screenshots/printer2.png) |
+
+All devices obtained IPv4 addresses automatically within their department's
+subnet, confirming DHCP scoping is correct per VLAN.
 
 ---
 
-## 10. Files in This Repo
+
+## 7. Files in This Repo
 
 - `soho-network-project2.pkt` — completed Packet Tracer file
 - `screenshots/` — all configuration and verification screenshots
