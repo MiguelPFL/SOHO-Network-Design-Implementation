@@ -166,19 +166,13 @@ Building configuration...
 ```
 
 ### 6.50 PC (PC0)
-```
-[SSID, security mode, and VLAN mapping per department AP]
-```
+![PC](screenshots/pc0.png)
 
 ### 6.51 PC (PC1)
-```
-[SSID, security mode, and VLAN mapping per department AP]
-```
+![PC](screenshots/pc1.png)
 
 ### 6.52 PC (PC2)
-```
-[SSID, security mode, and VLAN mapping per department AP]
-```
+![PC](screenshots/pc2.png)
 
 ### 6.2 Trunk and Access Ports
 ```
