@@ -205,15 +205,6 @@ subnet, confirming DHCP scoping is correct per VLAN.
 
 ---
 
-
-## 7. Files in This Repo
-
-- `soho-network-project2.pkt` — completed Packet Tracer file
-- `screenshots/` — all configuration and verification screenshots
-- `README.md` — this document
-
----
-
 ## 7. Testing & Verification
 
 The following tests confirm the network meets the case study's core
@@ -238,23 +229,7 @@ showing the router subinterface as the first hop is the clearest evidence
 that inter-VLAN routing — not a flat/misconfigured network — is what's
 making cross-department communication work.
 
----
-
-## 8. Troubleshooting Log
-
-| Issue | Cause | Fix |
-|---|---|---|
-| *e.g. Cross-VLAN pings failed initially* | *e.g. router subinterface encapsulation didn't match the VLAN tag arriving on the trunk* | *e.g. corrected `encapsulation dot1Q` value to match the VLAN ID* |
-| *e.g. AP not broadcasting SSID* | *e.g. access port connecting the AP was left in the default VLAN 1* | *e.g. reassigned the port to the correct department VLAN* |
-| *e.g. Host got no IP address* | *e.g. `service dhcp` not enabled, or pool network/mask mismatch* | *e.g. verified `service dhcp` and corrected the pool's network statement* |
-
-*(Replace with the actual issues you hit — even minor ones. This section is
-what shows real troubleshooting ability rather than just following a
-tutorial.)*
-
----
-
-## 9. Key Learnings
+## 8. Key Learnings
 
 - Router-on-a-stick requires the subinterface encapsulation VLAN ID to
   exactly match the VLAN tag the switch sends over the trunk — a mismatch
@@ -268,13 +243,9 @@ tutorial.)*
   mapping via the access port) mirrors real AP configuration closely enough
   to be a genuinely useful proxy for hands-on wireless setup.
 
-*(Edit these to reflect what you actually learned — the more specific to a
-mistake you personally made and fixed, the stronger this reads to a
-reviewer.)*
-
 ---
 
-## 10. Summary
+## 9. Summary
 
 This project implements a segmented SOHO network for XYZ company's Bonalbo
 branch, meeting all six requirements from the case study: a single Cisco
