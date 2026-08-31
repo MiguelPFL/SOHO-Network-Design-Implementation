@@ -139,5 +139,3 @@ Add `tracert` output for at least one cross-VLAN path to show the packet actuall
 - `README.md` — this document
 
 ---
-
-**Skills demonstrated:** VLAN segmentation, subnetting/VLSM, router-on-a-stick inter-VLAN routing, DHCP server configuration, wireless network setup, Cisco IOS CLI configuration, network testing and verification.
