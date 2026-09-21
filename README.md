@@ -72,25 +72,19 @@ referenced in a `switchport access vlan` command.
 ```
 Switch>en
 Switch#conf t
-Enter configuration commands, one per line.  End with CNTL/Z.
 Switch(config)#int range fa0/2-4
 Switch(config-if-range)#switchport mode access
 Switch(config-if-range)#switchport access vlan 10
-% Access VLAN does not exist. Creating vlan 10
 Switch(config-if-range)#exit
 Switch(config)#int range fa0/5-7
 Switch(config-if-range)#switchport mode access
 Switch(config-if-range)#switchport access vlan 20
-% Access VLAN does not exist. Creating vlan 20
 Switch(config-if-range)#exit
 Switch(config)#int range fa0/8-10
 Switch(config-if-range)#switchport mode access
 Switch(config-if-range)#switchport access vlan 30
-% Access VLAN does not exist. Creating vlan 30
 Switch(config-if-range)#exit
 Switch(config)#do wr
-Building configuration...
-[OK]
 ```
 
 ### 6.2 Switch — Trunk Configuration
@@ -105,8 +99,6 @@ Enter configuration commands, one per line.  End with CNTL/Z.
 Switch(config)#int fa0/1
 Switch(config-if)#switchport mode trunk
 Switch(config-if)#do wr
-Building configuration...
-[OK]
 ```
 
 ### 6.3 Router — Subinterfaces (Router-on-a-Stick)
@@ -118,7 +110,6 @@ department's subnet.
 ```
 Router>en
 Router#conf t
-Enter configuration commands, one per line.  End with CNTL/Z.
 Router(config)#int g0/0
 Router(config-if)#no sh
 Router(config-if)#exit
@@ -134,8 +125,6 @@ Router(config)#int g0/0.30
 Router(config-subif)#encapsulation dot1Q 30
 Router(config-subif)#ip address 192.168.1.129 255.255.255.192
 Router(config-subif)#do wr
-Building configuration...
-[OK]
 ```
 
 ### 6.4 Router — DHCP Pools
@@ -164,8 +153,6 @@ Router(dhcp-config)#dns-server 192.168.1.129
 Router(dhcp-config)#domain-name CS.com
 Router(dhcp-config)#exit
 Router(config)#do wr
-Building configuration...
-[OK]
 ```
 
 ### 6.5 Access Points
