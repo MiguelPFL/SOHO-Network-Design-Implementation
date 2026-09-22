@@ -227,7 +227,7 @@ while remaining logically separated by VLAN.
 ## 9. Summary
 
 This project implements a segmented SOHO network for XYZ company's Bonalbo
-branch, meeting all six requirements from the case study: a single Cisco
+branch, meeting all seven requirements from the case study: a single Cisco
 router and switch form the core infrastructure; three departments (Admin/IT,
 Finance/HR, CS/Reception) are isolated into separate VLANs with independent
 /26 subnets; router-on-a-stick provides inter-VLAN routing so departments can
